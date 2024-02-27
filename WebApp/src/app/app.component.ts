@@ -9,36 +9,39 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, ReactiveFormsModule, NgFor, NgIf],
   template: `
-   <h1>Gerador de Tabuadas</h1>
+    <h1>Gerador de Tabuadas</h1>
     <form (submit)="sendNumbers($event)">
       <label for="numbers">Digite os números separados por virgula:</label>
-        <input name="numbers" type="text" placeholder="Digite os números separados por virgula" [formControl]="input" />
+      <input name="numbers" type="text" placeholder="Digite os números separados por virgula" [formControl]="input" />
       <input type="submit" (click)="sendNumbers($event)" />
     </form>
-    <div *ngIf="isLoading; else tabuadasTemplRef">
+    <div class="loader" *ngIf="isLoading; else tabuadasTemplRef">
       <span>carregando...</span>
     </div>
     <ng-template #tabuadasTemplRef>
-      <ul>
-        <li *ngFor="let tabuada of tabuadas">
-          <h3>{{tabuada.fileName}}</h3>
-          <ul>
-            <li *ngFor="let line of tabuada.lines">
-              <span>{{line}}</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      </ng-template>
+    <h2>Tabuadas</h2>
+    <aside class="tabuadas">
+      <section *ngFor="let tabuada of tabuadas" class="card-item">
+        <h3>{{tabuada.fileName}}</h3>
+        <ul>
+          <li *ngFor="let line of tabuada.lines">
+            <span>{{line}}</span>
+          </li>
+        </ul>
+      </section>
+    </aside>
+    </ng-template>
   `,
   styles: [
     `
-      form {
+      h2 {
+        text-align: center;
+      }
+      .tabuadas{
         display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: 600px;
-        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 1rem;
       }
     `,
   ],

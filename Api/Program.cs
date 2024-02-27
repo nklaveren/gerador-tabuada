@@ -20,4 +20,3 @@ app.MapPost("/files", async (FilesRequest files) =>
 
 app.UseCors();
 app.Run();
- 
