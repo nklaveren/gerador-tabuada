@@ -1,0 +1,9 @@
+@Api_HostAddress = http://localhost:5116
+
+POST {{Api_HostAddress}}/files
+Content-Type: application/json
+
+{
+    "ids" : [ 1, 2 ]
+}
+###
